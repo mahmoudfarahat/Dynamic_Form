@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "GqJr3aZFC57FCsgjOFQuaMOVpV58UxJdgHqdZ8WTDLvNDbtbIQ6ohiNiuV/Uy4V6LwRGHPqnXs1OzUq3BPgeew==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mahmoud.farahat\\Desktop\\DynamicForms\\DynamicForms.Server\\DynamicForms.Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mahmoud.farahat\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\mahmoud.farahat\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\mahmoud.farahat\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\mahmoud.farahat\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\mahmoud.farahat\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\mahmoud.farahat\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
