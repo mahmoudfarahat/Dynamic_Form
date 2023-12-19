@@ -5,6 +5,10 @@ import { QuestionControlService } from '../Services/question-control.service';
 import { TextboxQuestion } from '../Services/question-textbox';
 import { DropdownQuestion } from '../Services/question-dropdown';
 import { DateQuestion } from '../Services/question-date';
+import { numberQuestion } from '../Services/question-number';
+import { CheckboxQuestion } from '../Services/question-checkbox';
+import { RadioQuestion } from '../Services/question-radio';
+
 
 @Component({
   selector: 'app-dynamic-form',
@@ -16,9 +20,9 @@ export class DynamicFormComponent implements OnInit {
   @Input() questions: any;
 
   form!: FormGroup;
-  payLoad = '';
+  // payLoad = '';
 
-  constructor(private qcs: QuestionControlService) {}
+  constructor(private qcs: QuestionControlService  ) {}
 
   ngOnInit() {
     this.form = this.qcs.toFormGroup(this.questions);
@@ -27,7 +31,7 @@ export class DynamicFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form.value);
-    this.payLoad = JSON.stringify(this.form.getRawValue());
+    // this.payLoad = JSON.stringify(this.form.getRawValue());
   }
   addInput(event: any) {
     console.log(event);
@@ -61,6 +65,33 @@ export class DynamicFormComponent implements OnInit {
         required: event.required,
         order: 1,
       });
+    }else if (event.type == 'number') {
+      input = new numberQuestion({
+        key: event.key,
+        label: event.label,
+        type: 'number',
+        value: '',
+        required: event.required,
+        order: 1,
+      });
+    }else if (event.type == 'checkbox') {
+      input = new CheckboxQuestion({
+        key: event.key,
+        label: event.label,
+        type: 'checkbox',
+        value: '',
+        required: event.required,
+        order: 1,
+      });
+    }else if (event.type == 'radio') {
+      input = new RadioQuestion({
+        key: event.key,
+        label: event.label,
+        type: 'radio',
+        value: '',
+        required: event.required,
+        order: 1,
+      });
     }
 
     this.questions.push(input);
@@ -80,4 +111,7 @@ export class DynamicFormComponent implements OnInit {
   // console.log(this.questions)
 
   //   }
+
+
+
 }

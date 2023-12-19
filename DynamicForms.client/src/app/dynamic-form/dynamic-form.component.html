@@ -1,29 +1,36 @@
-<div>
+<div class="row">
+<div class="col-9">
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
-
-    <div *ngFor="let question of questions" class="form-row">
+<div class="row" >
+  <div *ngFor="let question of questions"  class="col-6" >
+    <div >
       <app-question [question]="question" [form]="form"></app-question>
+
     </div>
+  </div>
+</div>
+
 
     <div class="form-row">
       <button type="submit" class="btn btn-success  mt-3" [disabled]="!form.valid">Save</button>
-    </div>
+
+     </div>
+
   </form>
+</div>
 
 
 
 
+<div class="col-3">
   <app-input-form (newItemEvent)="addInput($event)"></app-input-form>
 
-  <div>
-    <!-- <button  class="btn btn-primary mt-3" (click)="addInput()">Add Input</button> -->
-  </div>
-
-
-
-
-
-  <div *ngIf="payLoad" class="form-row">
-    <strong>Saved the following values</strong><br>{{payLoad}}
-  </div>
 </div>
+
+<!-- <div *ngIf="payLoad" class="form-row">
+  <strong>Saved the following values</strong><br>{{payLoad}}
+</div> -->
+
+</div>
+
+<pre class="mt-3">{{this.form.value | json}}</pre>
