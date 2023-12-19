@@ -6,9 +6,13 @@
     </div>
 
     <div class="form-row">
-      <button type="submit" [disabled]="!form.valid">Save</button>
+      <button type="submit" class="btn btn-success  mt-3" [disabled]="!form.valid">Save</button>
     </div>
   </form>
+
+  <div>
+    <button  class="btn btn-primary mt-3" (click)="addInput()">Add Input</button>
+  </div>
 
   <div *ngIf="payLoad" class="form-row">
     <strong>Saved the following values</strong><br>{{payLoad}}
