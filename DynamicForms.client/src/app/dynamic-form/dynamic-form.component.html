@@ -10,9 +10,18 @@
     </div>
   </form>
 
+
+
+
+  <app-input-form (newItemEvent)="addInput($event)"></app-input-form>
+
   <div>
-    <button  class="btn btn-primary mt-3" (click)="addInput()">Add Input</button>
+    <!-- <button  class="btn btn-primary mt-3" (click)="addInput()">Add Input</button> -->
   </div>
+
+
+
+
 
   <div *ngIf="payLoad" class="form-row">
     <strong>Saved the following values</strong><br>{{payLoad}}

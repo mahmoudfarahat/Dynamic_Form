@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { DynamicFormQuestionComponent } from './dynamic-form-question/dynamic-form-question.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InputFormComponent } from './input-form/input-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DynamicFormComponent,
-    DynamicFormQuestionComponent
+    DynamicFormQuestionComponent,
+    InputFormComponent
   ],
   imports: [
     BrowserModule,

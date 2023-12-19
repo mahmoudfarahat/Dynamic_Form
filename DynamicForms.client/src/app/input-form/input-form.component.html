@@ -1,0 +1,36 @@
+
+
+
+<form [formGroup]="inputForm" (ngSubmit)="onSubmit()" >
+  <label for="cars">Choose Type:</label>
+
+  <select name="cars" id="cars" formControlName="type">
+    <option value="textbox">TextBox</option>
+    <option value="date">Date</option>
+    <option value="dropdown">Dropdown</option>
+    <option value="number">Number</option>
+    <option value="checkbox">CheckBox</option>
+    <option value="radioBox">RadioBox</option>
+  </select>
+
+  <br/>
+  <br/>
+
+  <label for="cars">Label:</label>
+  <input formControlName="label">
+
+
+  <br/>
+  <br/>
+
+  <label for="cars">Required:</label>
+  <input type="checkbox" formControlName="required">
+
+  <br/>
+  <br/>
+  <button  class="btn btn-primary mt-3">Add Input</button>
+</form>
+
+
+
+
