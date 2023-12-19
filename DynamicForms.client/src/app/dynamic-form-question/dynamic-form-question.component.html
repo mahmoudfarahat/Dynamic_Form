@@ -1,9 +1,8 @@
 
-<div [formGroup]="form"  >
+<div [formGroup]="form" class="mb-3"  >
   <label [attr.for]="question.key">{{question.label}}</label>
 
   <span [ngSwitch]="question.controlType">
-
     <input class="form-control" *ngSwitchCase="'textbox'" [formControlName]="question.key"
             [id]="question.key" [type]="question.type">
 
@@ -13,7 +12,7 @@
             <input class="form-control" *ngSwitchCase="'number'" [formControlName]="question.key"
             [id]="question.key" [type]="question.type">
 
-            <input  class="mx-3"  *ngSwitchCase="'checkbox'" [formControlName]="question.key"
+            <input  class="mx-3 "  *ngSwitchCase="'checkbox'" [formControlName]="question.key"
             [id]="question.key" [type]="question.type">
 
             <input  class="mx-3" *ngSwitchCase="'radio'" [formControlName]="question.key"
@@ -25,5 +24,5 @@
 
   </span>
 
-  <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>
+  <div class="errorMessage" *ngIf="isInvalid">{{question.label}} is required</div>
 </div>
