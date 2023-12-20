@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-input-form',
@@ -19,10 +19,39 @@ export class InputFormComponent implements OnInit {
   key:new FormControl(''),
   type:new FormControl(''),
   label:new FormControl(''),
+  labelArray: new FormArray([]),
+  number:new FormControl(''),
   required:new FormControl(''),
  })
+get getLabelArray()
+{
+  return this.inputForm.get('labelArray') as FormArray
+}
 
+ addLabel(event:any){
+  const currentValue = event.target.value;
+  const previousValue = this.getLabelArray.length;
 
+  if (currentValue > previousValue) {
+    // Add form controls
+    for (let i = previousValue; i < currentValue; i++) {
+
+      this.getLabelArray.push(
+        new FormGroup({
+          text: new FormControl('')
+        })
+      );
+    }
+    
+  } else if (currentValue < previousValue) {
+    // Remove form controls
+    for (let i = previousValue; i > currentValue; i--) {
+      this.getLabelArray.removeAt(i - 1);
+    }
+  }
+
+  console.log(this.getLabelArray.value);
+ }
  onSubmit(){
   let label = this.inputForm.get('label')?.value;
   let key = (label?.charAt(0).toLowerCase() + label!.slice(1)).split(" ").join("")

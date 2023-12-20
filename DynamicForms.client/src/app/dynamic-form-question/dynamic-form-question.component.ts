@@ -9,6 +9,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class DynamicFormQuestionComponent implements OnInit {
 
+  @Input() Radios:any
   constructor() { }
 
   ngOnInit(): void {

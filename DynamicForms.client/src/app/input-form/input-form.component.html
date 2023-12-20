@@ -13,10 +13,23 @@
     <option value="radio">RadioBox</option>
   </select>
 
+  <label for="cars">number:</label>
+  <input type="number" formControlName="number" (input)="addLabel($event)" class="form-control">
+
+<div formArrayName="labelArray">
+  <div *ngFor="let item of getLabelArray.controls ; let i = index" [formGroupName]="i">
+    <label for="">Label{{i+1}}</label>
+    <input formControlName="text" class="form-control">
+  </div>
+</div>
 
 
-  <label for="cars">Label:</label>
+
+   <label for="cars">Label:</label>
   <input formControlName="label" class="form-control">
+
+
+
 
 
 
