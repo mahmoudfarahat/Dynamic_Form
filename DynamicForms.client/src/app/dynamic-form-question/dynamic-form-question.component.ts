@@ -13,6 +13,15 @@ export class DynamicFormQuestionComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+
+  toggleCheckboxValue(key: string,  event:any) {
+    const ischecked = (<HTMLInputElement>event.target).checked
+
+     this.form.controls[key].setValue(ischecked)
+
+  }
+
   @Input() question!: QuestionBase<string>;
   @Input() form!: FormGroup;
   get isInvalid() {

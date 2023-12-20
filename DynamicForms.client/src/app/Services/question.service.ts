@@ -12,7 +12,7 @@ export class QuestionService {
   // TODO: get from a remote source of question metadata
   getQuestions() {
 
-    const questions: QuestionBase<string>[] = [
+    const questions: QuestionBase<any>[] = [
 
       new DropdownQuestion({
         key: 'brave',

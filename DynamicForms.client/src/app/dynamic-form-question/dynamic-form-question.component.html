@@ -1,28 +1,62 @@
-
-<div [formGroup]="form" class="mb-3"  >
-  <label [attr.for]="question.key">{{question.label}}</label>
+<div [formGroup]="form" class="mb-3">
+  <label [attr.for]="question.key">{{ question.label }}</label>
 
   <span [ngSwitch]="question.controlType">
-    <input class="form-control" *ngSwitchCase="'textbox'" [formControlName]="question.key"
-            [id]="question.key" [type]="question.type">
+    <input
+      class="form-control"
+      *ngSwitchCase="'textbox'"
+      [formControlName]="question.key"
+      [id]="question.key"
+      [type]="question.type"
+    />
 
-            <input class="form-control" *ngSwitchCase="'date'" [formControlName]="question.key"
-            [id]="question.key" [type]="question.type">
+    <input
+      class="form-control"
+      *ngSwitchCase="'date'"
+      [formControlName]="question.key"
+      [id]="question.key"
+      [type]="question.type"
+    />
 
-            <input class="form-control" *ngSwitchCase="'number'" [formControlName]="question.key"
-            [id]="question.key" [type]="question.type">
+    <input
+      class="form-control"
+      *ngSwitchCase="'number'"
+      [formControlName]="question.key"
+      [id]="question.key"
+      [type]="question.type"
+    />
 
-            <input  class="mx-3 "  *ngSwitchCase="'checkbox'" [formControlName]="question.key"
-            [id]="question.key" [type]="question.type">
+    <input
+      *ngSwitchCase="'checkbox'"
+      [formControlName]="question.key"
+      [checked]="question.value"
+      [id]="question.key"
+      (change)="toggleCheckboxValue(question.key, $event)"
+      [type]="'checkbox'"
+    />
 
-            <input  class="mx-3" *ngSwitchCase="'radio'" [formControlName]="question.key"
-            [id]="question.key" [type]="question.type">
+    <input
+    *ngSwitchCase="'radio'"
+    [formControlName]="question.key"
+    [checked]="question.value"
+    [id]="question.key"
+    (change)="toggleCheckboxValue(question.key, $event)"
+    [type]="'radio'"
+  />
 
-    <select class="form-control"[id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
-      <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
+    <select
+      class="form-control"
+      [id]="question.key"
+      *ngSwitchCase="'dropdown'"
+      [formControlName]="question.key"
+    >
+      <option *ngFor="let opt of question.options" [value]="opt.key">
+        {{ opt.value }}
+      </option>
     </select>
-
   </span>
 
-  <div class="errorMessage" *ngIf="isInvalid">{{question.label}} is required</div>
+  <div class="errorMessage" *ngIf="isInvalid">
+    {{ question.label }} is required
+  </div>
 </div>

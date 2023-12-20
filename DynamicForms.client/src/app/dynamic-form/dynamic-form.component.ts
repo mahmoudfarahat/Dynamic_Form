@@ -30,7 +30,7 @@ export class DynamicFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    console.log(this.form.value , 55555555555);
     // this.payLoad = JSON.stringify(this.form.getRawValue());
   }
   addInput(event: any) {
@@ -79,10 +79,12 @@ export class DynamicFormComponent implements OnInit {
         key: event.key,
         label: event.label,
         type: 'checkbox',
-        value: '',
+        value: false,
         required: event.required,
         order: 1,
       });
+
+      console.log(input)
     }else if (event.type == 'radio') {
       input = new RadioQuestion({
         key: event.key,

@@ -9,7 +9,7 @@ export class QuestionControlService {
 
   constructor() { }
 
-  toFormGroup(questions: QuestionBase<string>[] ) {
+  toFormGroup(questions: QuestionBase<any>[] ) {
     const group: any = {};
 
     questions.forEach(question => {
