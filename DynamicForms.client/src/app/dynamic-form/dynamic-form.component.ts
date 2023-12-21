@@ -104,7 +104,7 @@ export class DynamicFormComponent implements OnInit {
       //     order: 1,
       //   });
       // }
-   
+
         input =   new RadioQuestion({
           key: event.key,
           label:  event.label,
@@ -131,6 +131,7 @@ console.log(this.questions)
     }
 
     this.questions.push(input);
+    this.questions.sort((a:any, b:any) => a.order - b.order)
     this.form = this.qcs.toFormGroup(this.questions);
   }
   //   addInput(){
