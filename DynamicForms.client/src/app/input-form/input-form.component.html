@@ -12,6 +12,9 @@
     <option value="color">Color</option>
     <option value="checkbox">CheckBox</option>
     <option value="radio">RadioBox</option>
+
+
+
   </select>
 
   <label for="cars">Label:</label>
@@ -32,7 +35,14 @@
 
 </span>
 
-
+<span *ngIf="needOptions">
+  <label for="cars">Options Number:</label>
+  <input type="number" formControlName="option" (input)="addLabel($event)" class="form-control">
+  <div *ngFor="let item of getOptionArray.controls ; let i = index" [formGroupName]="i">
+    <label for="">Option{{i+1}}</label>
+    <input formControlName="option" class="form-control">
+  </div>
+</span>
 
 
 
