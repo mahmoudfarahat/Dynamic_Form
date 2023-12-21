@@ -8,6 +8,7 @@ import { DynamicFormQuestionComponent } from './dynamic-form-question/dynamic-fo
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputFormComponent } from './input-form/input-form.component';
 import { HttpClientModule } from  '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import { HttpClientModule } from  '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
