@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { every } from 'rxjs';
 
 @Component({
   selector: 'app-input-form',
@@ -9,7 +10,7 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 export class InputFormComponent implements OnInit {
 
 @Output()  newItemEvent = new EventEmitter<any>();
-
+needNumber= false
   constructor() { }
 
   ngOnInit(): void {
@@ -61,6 +62,15 @@ this.newItemEvent.emit(this.inputForm.value)
 console.log(this.inputForm.value)
 
 
+
+ }
+
+ onSelectChange(event:any){
+  if(event.target.value =='radio'){
+
+this.needNumber = true
+ 
+  }
 
  }
   // const input = new TextboxQuestion({

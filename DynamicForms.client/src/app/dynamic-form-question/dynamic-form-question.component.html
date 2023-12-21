@@ -1,7 +1,8 @@
 <div [formGroup]="form" class="mb-3">
-  <label [attr.for]="question.key" *ngIf="question.type!='radio'">{{ question.label }}</label>
+  <label [attr.for]="question.key" *ngIf="question.type!='radio' && question.type !='checkbox'">{{ question.label }}</label>
   <label class="" [attr.for]="question.key" *ngIf="question.type=='radio'" >
     {{ question.label }}: </label>
+
   <br>
 
   <span [ngSwitch]="question.controlType">
@@ -29,14 +30,20 @@
       [type]="question.type"
     />
 
-    <input
-      *ngSwitchCase="'checkbox'"
-      [formControlName]="question.key"
-      [checked]="question.value"
-      [id]="question.key"
-      (change)="toggleCheckboxValue(question.key, $event)"
-      [type]="'checkbox'"
-    />
+    <span   *ngSwitchCase="'checkbox'" class="mt-3">
+      <label    >
+         {{question.label }}
+         <input
+         *ngSwitchCase="'checkbox'"
+         [formControlName]="question.key"
+         [checked]="question.value"
+         [id]="question.key"
+         (change)="toggleCheckboxValue(question.key, $event)"
+         [type]="'checkbox'"
+       />
+      </label>
+    </span>
+
 
 
       <!-- <input

@@ -4,7 +4,7 @@
 <form [formGroup]="inputForm" (ngSubmit)="onSubmit()" >
   <label for="cars">Choose Type:</label>
 
-  <select name="cars" id="cars" formControlName="type" class="form-control">
+  <select name="cars" id="cars" formControlName="type" class="form-control" (change)="onSelectChange($event)">
     <option value="textbox">TextBox</option>
     <option value="date">Date</option>
     <option value="dropdown">Dropdown</option>
@@ -12,26 +12,30 @@
     <option value="checkbox">CheckBox</option>
     <option value="radio">RadioBox</option>
   </select>
-
+  
+  <label for="cars">Label:</label>
+  <input formControlName="label" class="form-control">
 
   <label for="cars">Order:</label>
   <input type="number" formControlName="order"  class="form-control">
 
-
+<span *ngIf="needNumber">
   <label for="cars">number:</label>
   <input type="number" formControlName="number" (input)="addLabel($event)" class="form-control">
-
-<div formArrayName="labelArray">
-  <div *ngFor="let item of getLabelArray.controls ; let i = index" [formGroupName]="i">
-    <label for="">Label{{i+1}}</label>
-    <input formControlName="text" class="form-control">
+  <div formArrayName="labelArray">
+    <div *ngFor="let item of getLabelArray.controls ; let i = index" [formGroupName]="i">
+      <label for="">Label{{i+1}}</label>
+      <input formControlName="text" class="form-control">
+    </div>
   </div>
-</div>
+
+</span>
 
 
 
-   <label for="cars">Label:</label>
-  <input formControlName="label" class="form-control">
+
+
+
 
 
 
