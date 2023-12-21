@@ -8,6 +8,7 @@ import { DateQuestion } from '../Services/question-date';
 import { numberQuestion } from '../Services/question-number';
 import { CheckboxQuestion } from '../Services/question-checkbox';
 import { RadioQuestion } from '../Services/question-radio';
+import { colorQuestion } from '../Services/question-color';
 
 
 @Component({
@@ -92,19 +93,6 @@ export class DynamicFormComponent implements OnInit {
 
       console.log(input)
     }else if (event.type == 'radio') {
-      console.log(2)
-
-      // for(let radio of event.labelArray){
-      //   input = new RadioQuestion({
-      //     key: event.key,
-      //     label: radio.text,
-      //     type: 'radio',
-      //     value:  radio.text,
-      //     required: event.required,
-      //     order: 1,
-      //   });
-      // }
-
         input =   new RadioQuestion({
           key: event.key,
           label:  event.label,
@@ -123,11 +111,14 @@ export class DynamicFormComponent implements OnInit {
           required: true,
           order: event.order
         })
+    }else if (event.type == 'color') {
+      input = new colorQuestion({
+        key: event.key,
+        label:  event.label,
+        type: 'color',
+        order:event.order
+      })
 
-
-
-
-console.log(this.questions)
     }
 
     this.questions.push(input);

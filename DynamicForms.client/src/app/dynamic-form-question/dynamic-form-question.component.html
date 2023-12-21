@@ -7,6 +7,13 @@
 
   <span [ngSwitch]="question.controlType">
     <input
+    class="form-control"
+    *ngSwitchCase="'color'"
+    [formControlName]="question.key"
+    [id]="question.key"
+    [type]="question.type"
+  />
+    <input
       class="form-control"
       *ngSwitchCase="'textbox'"
       [formControlName]="question.key"

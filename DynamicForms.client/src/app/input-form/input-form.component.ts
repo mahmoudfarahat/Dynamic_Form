@@ -14,6 +14,7 @@ needNumber= false
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
  inputForm = new FormGroup({
@@ -55,12 +56,12 @@ get getLabelArray()
   console.log(this.getLabelArray.value);
  }
  onSubmit(){
-  
+
   let label = this.inputForm.get('label')?.value;
   let key = (label?.charAt(0).toLowerCase() + label!.slice(1)).split(" ").join("")
  this.inputForm.get('key')?.setValue(key)
-this.newItemEvent.emit(this.inputForm.value)
-console.log(this.inputForm.value)
+  this.newItemEvent.emit(this.inputForm.value)
+  console.log(this.inputForm.value)
 
 
 
