@@ -12,7 +12,7 @@
     <option value="checkbox">CheckBox</option>
     <option value="radio">RadioBox</option>
   </select>
-  
+
   <label for="cars">Label:</label>
   <input formControlName="label" class="form-control">
 
@@ -47,7 +47,7 @@
 
   <br/>
 
-  <button  class="btn btn-primary mt-3">Add Input</button>
+  <button  class="btn btn-primary mt-3" [disabled]="!inputForm.valid">Add Input</button>
 </form>
 
 <!-- {{this.inputForm.value | json}} -->

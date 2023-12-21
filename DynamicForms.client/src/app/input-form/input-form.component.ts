@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { every } from 'rxjs';
 
 @Component({
@@ -18,8 +18,8 @@ needNumber= false
 
  inputForm = new FormGroup({
   key:new FormControl(''),
-  type:new FormControl(''),
-  label:new FormControl(''),
+  type:new FormControl('',[Validators.required]),
+  label:new FormControl('',[Validators.required]),
   labelArray: new FormArray([]),
   order:new FormControl(''),
   number:new FormControl(''),
@@ -55,6 +55,7 @@ get getLabelArray()
   console.log(this.getLabelArray.value);
  }
  onSubmit(){
+  
   let label = this.inputForm.get('label')?.value;
   let key = (label?.charAt(0).toLowerCase() + label!.slice(1)).split(" ").join("")
  this.inputForm.get('key')?.setValue(key)
@@ -69,7 +70,7 @@ console.log(this.inputForm.value)
   if(event.target.value =='radio'){
 
 this.needNumber = true
- 
+
   }
 
  }

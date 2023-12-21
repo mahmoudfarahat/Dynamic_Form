@@ -1,22 +1,25 @@
 <div class="row ">
-<div class="col-9 formStyle">
-  <form (ngSubmit)="onSubmit()" [formGroup]="form">
-<div class="row " >
-  <div *ngFor="let question of questions"  class="col-6 "  >
-    <div >
-      <app-question [question]="question" [form]="form"></app-question>
+<div class="col-9  ">
+  <div class="formStyle">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+      <div class="row " >
+        <div *ngFor="let question of questions"  class="col-6 "  >
+          <div >
+            <app-question [question]="question" [form]="form"></app-question>
 
-    </div>
+          </div>
+        </div>
+      </div>
+
+
+          <div class="form-row">
+            <button type="submit" class="btn btn-success  mt-3" [disabled]="!form.valid">Save</button>
+
+           </div>
+
+        </form>
   </div>
-</div>
 
-
-    <div class="form-row">
-      <button type="submit" class="btn btn-success  mt-3" [disabled]="!form.valid">Save</button>
-
-     </div>
-
-  </form>
 </div>
 
 
@@ -24,6 +27,7 @@
 
 <div class="col-3 ">
   <div class="formStyle">
+
     <app-input-form (newItemEvent)="addInput($event)"></app-input-form>
 
   </div>
