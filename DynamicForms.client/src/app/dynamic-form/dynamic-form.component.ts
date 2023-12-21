@@ -121,7 +121,7 @@ export class DynamicFormComponent implements OnInit {
             return result;
           })(),
           required: true,
-          order: 4
+          order: event.order
         })
 
 

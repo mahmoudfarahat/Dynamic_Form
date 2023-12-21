@@ -20,6 +20,7 @@ export class InputFormComponent implements OnInit {
   type:new FormControl(''),
   label:new FormControl(''),
   labelArray: new FormArray([]),
+  order:new FormControl(''),
   number:new FormControl(''),
   required:new FormControl(''),
  })
@@ -42,7 +43,7 @@ get getLabelArray()
         })
       );
     }
-    
+
   } else if (currentValue < previousValue) {
     // Remove form controls
     for (let i = previousValue; i > currentValue; i--) {
