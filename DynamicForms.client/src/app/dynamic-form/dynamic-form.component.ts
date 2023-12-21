@@ -112,7 +112,7 @@ export class DynamicFormComponent implements OnInit {
       });
     }
 
-    if(input && !input.order)
+    if(input && input.order)
     {
       console.log(this.questions)
      let highestOrder = this.questions.reduce((a:any, b:any) => {
