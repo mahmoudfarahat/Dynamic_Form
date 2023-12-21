@@ -86,17 +86,25 @@ export class DynamicFormComponent implements OnInit {
 
       console.log(input)
     }else if (event.type == 'radio') {
-      input = new RadioQuestion({
-        key: event.key,
-        label: event.label,
-        type: 'radio',
-        value: '',
-        required: event.required,
-        order: 1,
-      });
+      console.log(2)
+
+      for(let radio of event.labelArray){
+        input = new RadioQuestion({
+          key: event.key,
+          label: radio.text,
+          type: 'radio',
+          value: radio.text,
+          required: event.required,
+          order: 1,
+        });
+        this.questions.push(input);
+
+      }
+
+console.log(this.questions)
     }
 
-    this.questions.push(input);
+
     this.form = this.qcs.toFormGroup(this.questions);
   }
   //   addInput(){

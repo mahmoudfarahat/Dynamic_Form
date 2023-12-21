@@ -23,6 +23,11 @@ export class DynamicFormQuestionComponent implements OnInit {
 
   }
 
+  onChange(key: string,  event:any){
+    console.log(event.target.value)
+     this.form.controls[key].setValue(event.target.value)
+  }
+
   @Input() question!: QuestionBase<string>;
   @Input() form!: FormGroup;
   get isInvalid() {

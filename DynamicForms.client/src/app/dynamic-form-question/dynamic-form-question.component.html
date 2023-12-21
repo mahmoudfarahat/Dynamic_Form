@@ -35,16 +35,16 @@
       [type]="'checkbox'"
     />
 
-    <div *ngFor="let radio of Radios">
+
       <input
       *ngSwitchCase="'radio'"
       [formControlName]="question.key"
-      [checked]="question.value"
+      [value]="question.value"
       [id]="question.key"
-      (change)="toggleCheckboxValue(question.key, $event)"
+      (change)="onChange(question.key, $event)"
       [type]="'radio'"
     />
-    </div>
+
 
 
     <select
