@@ -10,7 +10,6 @@ import { CheckboxQuestion } from '../Services/question-checkbox';
 import { RadioQuestion } from '../Services/question-radio';
 import { colorQuestion } from '../Services/question-color';
 
-
 @Component({
   selector: 'app-dynamic-form',
   templateUrl: './dynamic-form.component.html',
@@ -19,29 +18,22 @@ import { colorQuestion } from '../Services/question-color';
 export class DynamicFormComponent implements OnInit {
   // @Input() questions: QuestionBase<string>[] = [];
   @Input() questions: any;
-
-  form!: FormGroup;
+   form!: FormGroup;
   // payLoad = '';
 
-  constructor(private qcs: QuestionControlService  ) {}
+  constructor(private qcs: QuestionControlService) {}
 
   ngOnInit() {
     this.form = this.qcs.toFormGroup(this.questions);
     console.log(2);
-
-    this.newForm.get('hello')?.valueChanges.subscribe((a)=>{
-      console.log(a)
-    })
-
-
   }
 
   onSubmit() {
-    console.log(this.form.value , 55555555555);
+    console.log(this.form.value, 55555555555);
     // this.payLoad = JSON.stringify(this.form.getRawValue());
   }
   addInput(event: any) {
-    console.log(event);
+
     let input;
     if (event.type == 'textbox') {
       input = new TextboxQuestion({
@@ -49,7 +41,7 @@ export class DynamicFormComponent implements OnInit {
         label: event.label,
         value: '',
         required: event.required,
-        order: 1,
+        order: event.order,
       });
     } else if (event.type == 'dropdown') {
       input = new DropdownQuestion({
@@ -61,7 +53,7 @@ export class DynamicFormComponent implements OnInit {
           { key: 'good', value: 'Good' },
           { key: 'unproven', value: 'Unproven' },
         ],
-        order: 3,
+        order: event.order,
       });
     } else if (event.type == 'date') {
       input = new DateQuestion({
@@ -70,78 +62,68 @@ export class DynamicFormComponent implements OnInit {
         type: 'date',
         value: '',
         required: event.required,
-        order: 1,
+        order:event.order,
       });
-    }else if (event.type == 'number') {
+    } else if (event.type == 'number') {
       input = new numberQuestion({
         key: event.key,
         label: event.label,
         type: 'number',
         value: '',
         required: event.required,
-        order: 1,
+        order: event.order,
       });
-    }else if (event.type == 'checkbox') {
+    } else if (event.type == 'checkbox') {
       input = new CheckboxQuestion({
         key: event.key,
         label: event.label,
         type: 'checkbox',
         value: false,
         required: event.required,
-        order: 1,
+        order: event.order,
       });
 
-      console.log(input)
-    }else if (event.type == 'radio') {
-        input =   new RadioQuestion({
-          key: event.key,
-          label:  event.label,
-          type: 'radio',
-          options: (function () {
-            const result = [];
-            for(let radio of event.labelArray){
-              result.push({
-                key: radio.text,
-                value: radio.text
-              });
-            }
-            console.log(result)
-            return result;
-          })(),
-          required: true,
-          order: event.order
-        })
-    }else if (event.type == 'color') {
+      console.log(input);
+    } else if (event.type == 'radio') {
+      input = new RadioQuestion({
+        key: event.key,
+        label: event.label,
+        type: 'radio',
+        options: (function () {
+          const result = [];
+          for (let radio of event.labelArray) {
+            result.push({
+              key: radio.text,
+              value: radio.text,
+            });
+          }
+          console.log(result);
+          return result;
+        })(),
+        required: true,
+        order: event.order,
+      });
+    } else if (event.type == 'color') {
       input = new colorQuestion({
         key: event.key,
-        label:  event.label,
+        label: event.label,
         type: 'color',
-        order:event.order
-      })
+        order: event.order,
+      });
+    }
 
+    if(input && !input.order)
+    {
+      console.log(this.questions)
+     let highestOrder = this.questions.reduce((a:any, b:any) => {
+        return b.order > a.order ? b : a;
+      }, this.questions[0]);
+
+      input.order = +highestOrder.order +1
     }
 
     this.questions.push(input);
-    this.questions.sort((a:any, b:any) => a.order - b.order)
+    this.questions.sort((a: any, b: any) => a.order - b.order);
     this.form = this.qcs.toFormGroup(this.questions);
   }
-  //   addInput(){
-  //    const input = new TextboxQuestion({
-  //       key: 'SecondName',
-  //       label: 'First name',
-  //       value: 'Bombasto',
-  //       required: true,
-  //       order: 1
-  //     })
-
-  // console.log(this.questions.push(input))
-  // this.form = this.qcs.toFormGroup(this.questions);
-  // console.log(this.questions)
-
-  //   }
-
-newForm :FormGroup = new FormGroup({
-  hello:new FormControl('')
-})
-
 }

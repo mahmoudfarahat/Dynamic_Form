@@ -53,16 +53,7 @@
 
 
 
-      <!-- <input
-      *ngSwitchCase="'radio'"
-      [formControlName]="question.key"
-      [value]="'sss'"
-      [id]="question.key"
-      [name]="question.key"
-      (change)="onChange(question.key, $event)"
-      [type]="'radio'"
-    /> -->
-
+   
 <span   *ngSwitchCase="'radio'" class="mt-3">
   <label *ngFor="let opt of question.options"  >
      {{opt.key}}
