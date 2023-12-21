@@ -7,7 +7,7 @@ export class QuestionBase<T> {
   controlType: string;
   type: string;
   options: {key: string, value: T}[];
-
+  radioValue:any;
   constructor(options: {
       value?: T;
       key?: string;
@@ -17,7 +17,10 @@ export class QuestionBase<T> {
       controlType?: string;
       type?: string;
       options?: {key: string, value: T}[];
+      radioValue? : any
     } = {}) {
+
+      this.radioValue = options.radioValue
     this.value = options.value;
     this.key = options.key || '';
     this.label = options.label || '';

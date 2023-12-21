@@ -1,5 +1,7 @@
 <div [formGroup]="form" class="mb-3">
-  <label [attr.for]="question.key">{{ question.label }}</label>
+  <label [attr.for]="question.key" *ngIf="question.type!='radio'">{{ question.label }}</label>
+  <label class="mt-3" [attr.for]="question.key" *ngIf="question.type=='radio'" >{{ question.label }}: </label>
+  <br>
 
   <span [ngSwitch]="question.controlType">
     <input
@@ -36,15 +38,26 @@
     />
 
 
-      <input
+      <!-- <input
       *ngSwitchCase="'radio'"
       [formControlName]="question.key"
-      [value]="question.value"
+      [value]="'sss'"
       [id]="question.key"
+      [name]="question.key"
       (change)="onChange(question.key, $event)"
       [type]="'radio'"
-    />
+    /> -->
 
+<div   *ngSwitchCase="'radio'">
+  <label *ngFor="let opt of question.options">
+    {{opt.key}}
+    <input
+      type="radio"
+      [name]="question.key"
+      [formControlName]="question.key"
+      [value]="opt.value">
+  </label>
+</div>
 
 
     <select

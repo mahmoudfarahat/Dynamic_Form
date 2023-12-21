@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { QuestionBase } from '../Services/question-base';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { QuestionControlService } from '../Services/question-control.service';
 import { TextboxQuestion } from '../Services/question-textbox';
 import { DropdownQuestion } from '../Services/question-dropdown';
@@ -27,6 +27,12 @@ export class DynamicFormComponent implements OnInit {
   ngOnInit() {
     this.form = this.qcs.toFormGroup(this.questions);
     console.log(2);
+
+    this.newForm.get('hello')?.valueChanges.subscribe((a)=>{
+      console.log(a)
+    })
+
+
   }
 
   onSubmit() {
@@ -88,23 +94,43 @@ export class DynamicFormComponent implements OnInit {
     }else if (event.type == 'radio') {
       console.log(2)
 
-      for(let radio of event.labelArray){
-        input = new RadioQuestion({
+      // for(let radio of event.labelArray){
+      //   input = new RadioQuestion({
+      //     key: event.key,
+      //     label: radio.text,
+      //     type: 'radio',
+      //     value:  radio.text,
+      //     required: event.required,
+      //     order: 1,
+      //   });
+      // }
+   
+        input =   new RadioQuestion({
           key: event.key,
-          label: radio.text,
+          label:  event.label,
           type: 'radio',
-          value: radio.text,
-          required: event.required,
-          order: 1,
-        });
-        this.questions.push(input);
+          options: (function () {
+            const result = [];
+            for(let radio of event.labelArray){
+              result.push({
+                key: radio.text,
+                value: radio.text
+              });
+            }
+            console.log(result)
+            return result;
+          })(),
+          required: true,
+          order: 4
+        })
 
-      }
+
+
 
 console.log(this.questions)
     }
 
-
+    this.questions.push(input);
     this.form = this.qcs.toFormGroup(this.questions);
   }
   //   addInput(){
@@ -122,6 +148,8 @@ console.log(this.questions)
 
   //   }
 
-
+newForm :FormGroup = new FormGroup({
+  hello:new FormControl('')
+})
 
 }
