@@ -10,13 +10,14 @@ import { InputFormComponent } from './input-form/input-form.component';
 import { HttpClientModule } from  '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
-@NgModule({
+ @NgModule({
   declarations: [
     AppComponent,
     DynamicFormComponent,
     DynamicFormQuestionComponent,
-    InputFormComponent
-  ],
+    InputFormComponent,
+    
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,

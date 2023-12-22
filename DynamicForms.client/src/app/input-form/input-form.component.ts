@@ -1,6 +1,7 @@
+import { QuestionService } from './../Services/question.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { every } from 'rxjs';
+ import { LabelValidator } from '../Validators/uniquelabel';
 
 @Component({
   selector: 'app-input-form',
@@ -11,14 +12,14 @@ export class InputFormComponent implements OnInit {
   @Output() newItemEvent = new EventEmitter<any>();
   needNumber = false;
   needOptions = false
-  constructor() {}
+  constructor(private questionService: QuestionService ) {}
 
   ngOnInit(): void {}
 
   inputForm = new FormGroup({
     key: new FormControl(''),
     type: new FormControl('', [Validators.required]),
-    label: new FormControl('', [Validators.required]),
+    label: new FormControl('', [Validators.required],[LabelValidator(this.questionService.questions)]),
     labelArray: new FormArray([]),
     optionArray:new FormArray([]),
     order: new FormControl(''),
@@ -56,13 +57,16 @@ export class InputFormComponent implements OnInit {
     console.log(this.getLabelArray.value);
   }
   onSubmit() {
-    let label = this.inputForm.get('label')?.value;
-    let key = (label?.charAt(0).toLowerCase() + label!.slice(1))
-      .split(' ')
-      .join('');
-    this.inputForm.get('key')?.setValue(key);
-    this.newItemEvent.emit(this.inputForm.value);
-    console.log(this.inputForm.value);
+    if(this.inputForm.valid){
+      let label = this.inputForm.get('label')?.value;
+      let key = (label?.charAt(0).toLowerCase() + label!.slice(1))
+        .split(' ')
+        .join('');
+      this.inputForm.get('key')?.setValue(key);
+      this.newItemEvent.emit(this.inputForm.value);
+      console.log(this.inputForm.value);
+    }
+
   }
 
   onSelectChange(event: any) {

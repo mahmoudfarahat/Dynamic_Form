@@ -19,6 +19,9 @@
 
   <label for="cars">Label:</label>
   <input formControlName="label" class="form-control">
+   <div class="errorMessage" *ngIf="inputForm.get('label')?.hasError('LabelExists') &&  this.inputForm.get('label')?.touched">
+   this label is already Exits
+  </div>
 
   <label for="cars">Order:</label>
   <input type="number" formControlName="order"  class="form-control">
