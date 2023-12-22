@@ -1,3 +1,4 @@
+import { QuestionService } from './../Services/question.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { QuestionBase } from '../Services/question-base';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -21,7 +22,7 @@ export class DynamicFormComponent implements OnInit {
    form!: FormGroup;
   // payLoad = '';
 
-  constructor(private qcs: QuestionControlService) {}
+  constructor(private qcs: QuestionControlService , private  questionService :QuestionService) {}
 
   ngOnInit() {
     this.form = this.qcs.toFormGroup(this.questions);
@@ -114,15 +115,21 @@ export class DynamicFormComponent implements OnInit {
 
     if(input && !input.order)
     {
-      console.log(this.questions)
-     let highestOrder = this.questions.reduce((a:any, b:any) => {
-        return b.order > a.order ? b : a;
-      }, this.questions[0]);
+      if(this.questions.length > 0){
+        console.log(this.questions)
+        let highestOrder = this.questions.reduce((a:any, b:any) => {
+           return b.order > a.order ? b : a;
+         }, this.questions[0]);
 
-      input.order = +highestOrder.order +1
+         input.order = +highestOrder.order +1
+      }
+
     }
 
-    this.questions.push(input);
+    // this.questions.push(input);
+    this.questionService.addQuestion(input);
+    console.log(this.questionService.questions)
+    
     this.questions.sort((a: any, b: any) => a.order - b.order);
     this.form = this.qcs.toFormGroup(this.questions);
   }
