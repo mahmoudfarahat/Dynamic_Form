@@ -34,6 +34,29 @@ export class InputFormComponent implements OnInit {
     return this.inputForm.get('labelArray') as FormArray;
   }
 
+  addOption(event: any) {
+    const currentValue = event.target.value;
+    const previousValue = this.getOptionArray.length;
+
+    if (currentValue > previousValue) {
+      // Add form controls
+      for (let i = previousValue; i < currentValue; i++) {
+        this.getOptionArray.push(
+          new FormGroup({
+            optionText: new FormControl(''),
+          })
+        );
+      }
+    } else if (currentValue < previousValue) {
+      // Remove form controls
+      for (let i = previousValue; i > currentValue; i--) {
+        this.getOptionArray.removeAt(i - 1);
+      }
+    }
+
+    console.log(this.getOptionArray.value);
+  }
+
   addLabel(event: any) {
     const currentValue = event.target.value;
     const previousValue = this.getLabelArray.length;

@@ -40,11 +40,13 @@
 
 <span *ngIf="needOptions">
   <label for="cars">Options Number:</label>
-  <input type="number" formControlName="option" (input)="addLabel($event)" class="form-control">
+  <input type="number" formControlName="option" (input)="addOption($event)" class="form-control">
+  <div formArrayName="optionArray">
   <div *ngFor="let item of getOptionArray.controls ; let i = index" [formGroupName]="i">
     <label for="">Option{{i+1}}</label>
-    <input formControlName="option" class="form-control">
+    <input formControlName="optionText" class="form-control">
   </div>
+</div>
 </span>
 
 

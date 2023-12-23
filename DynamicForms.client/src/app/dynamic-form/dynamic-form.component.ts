@@ -48,12 +48,18 @@ export class DynamicFormComponent implements OnInit {
       input = new DropdownQuestion({
         key: 'brave',
         label: 'Bravery Rating',
-        options: [
-          { key: 'solid', value: 'Solid' },
-          { key: 'great', value: 'Great' },
-          { key: 'good', value: 'Good' },
-          { key: 'unproven', value: 'Unproven' },
-        ],
+        options
+        : (function () {
+          const result = [];
+          for (let radio of event.optionArray) {
+            result.push({
+              key: radio.optionText,
+              value: radio.optionText,
+            });
+          }
+          console.log(result);
+          return result;
+        })(),
         order: event.order,
       });
     } else if (event.type == 'date') {
@@ -129,7 +135,7 @@ export class DynamicFormComponent implements OnInit {
     // this.questions.push(input);
     this.questionService.addQuestion(input);
     console.log(this.questionService.questions)
-    
+
     this.questions.sort((a: any, b: any) => a.order - b.order);
     this.form = this.qcs.toFormGroup(this.questions);
   }
