@@ -10,6 +10,8 @@ import { numberQuestion } from '../Services/question-number';
 import { CheckboxQuestion } from '../Services/question-checkbox';
 import { RadioQuestion } from '../Services/question-radio';
 import { colorQuestion } from '../Services/question-color';
+import { FileQuestion } from '../Services/question-file';
+import { InputFactory } from '../Services/input-factory';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -35,89 +37,9 @@ export class DynamicFormComponent implements OnInit {
   }
   addInput(event: any) {
 
-    let input;
-    if (event.type == 'textbox') {
-      input = new TextboxQuestion({
-        key: event.key,
-        label: event.label,
-        value: '',
-        required: event.required,
-        order: event.order,
-      });
-    } else if (event.type == 'dropdown') {
-      input = new DropdownQuestion({
-        key: 'brave',
-        label: 'Bravery Rating',
-        options
-        : (function () {
-          const result = [];
-          for (let radio of event.optionArray) {
-            result.push({
-              key: radio.optionText,
-              value: radio.optionText,
-            });
-          }
-          console.log(result);
-          return result;
-        })(),
-        order: event.order,
-      });
-    } else if (event.type == 'date') {
-      input = new DateQuestion({
-        key: event.key,
-        label: event.label,
-        type: 'date',
-        value: '',
-        required: event.required,
-        order:event.order,
-      });
-    } else if (event.type == 'number') {
-      input = new numberQuestion({
-        key: event.key,
-        label: event.label,
-        type: 'number',
-        value: '',
-        required: event.required,
-        order: event.order,
-      });
-    } else if (event.type == 'checkbox') {
-      input = new CheckboxQuestion({
-        key: event.key,
-        label: event.label,
-        type: 'checkbox',
-        value: false,
-        required: event.required,
-        order: event.order,
-      });
+    const inputFactory = new InputFactory();
+    const input = inputFactory.createInput(event);
 
-      console.log(input);
-    } else if (event.type == 'radio') {
-      input = new RadioQuestion({
-        key: event.key,
-        label: event.label,
-        type: 'radio',
-        options: (function () {
-          const result = [];
-          for (let radio of event.labelArray) {
-            result.push({
-              key: radio.text,
-              value: radio.text,
-            });
-          }
-          console.log(result);
-          return result;
-        })(),
-        required: true,
-        order: event.order,
-      });
-    } else if (event.type == 'color') {
-      input = new colorQuestion({
-        key: event.key,
-        label: event.label,
-        type: 'color',
-        order: event.order,
-      });
-    }
 
     if(input && !input.order)
     {
